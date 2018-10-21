@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { CreatePackageComponent } from './create-package/package.component';
+import { PackageComponent } from './package/package.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PackagesDirectoryComponent } from './packages-directory/packages-directory.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -21,14 +21,14 @@ import {CurrencyService} from './services/currency/currency.service';
 
 const appRoutes: Routes = [
   { path: '', component: PackagesDirectoryComponent },
-  { path: 'create-package', component: CreatePackageComponent },
-  { path: 'update-package/:id', component: CreatePackageComponent },
+  { path: 'create-package', component: PackageComponent },
+  { path: 'update-package/:id', component: PackageComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatePackageComponent,
+    PackageComponent,
     NavbarComponent,
     PackagesDirectoryComponent,
     UpdatePackageComponent

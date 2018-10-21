@@ -12,7 +12,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './package.component.html',
   styleUrls: ['./package.component.css']
 })
-export class CreatePackageComponent implements OnInit {
+export class PackageComponent implements OnInit {
   isLoaded: boolean;
   packageForm: FormGroup;
 
