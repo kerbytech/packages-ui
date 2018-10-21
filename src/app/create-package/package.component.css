@@ -1,0 +1,21 @@
+.label-error {
+  display: block;
+  margin: 0 0 .28571429rem 0;
+  color: rgba(0,0,0,.87);
+  font-size: .92857143em;
+  font-weight: 700;
+  text-transform: none;
+  color: #9f3a38 !important;
+}
+
+.ui.form .field.error label {
+  color: var(--dark-red-highlight);
+}
+
+.ui.form .field.error input {
+  background: white;
+  border-color: #adadad;
+  color: black;
+  border-radius: '';
+  box-shadow: none;
+}

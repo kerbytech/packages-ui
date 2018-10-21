@@ -1,0 +1,42 @@
+<div class="ui container">
+
+  <div *ngIf="packageId == null" class="ui huge header">Create Package</div>
+  <div *ngIf="packageId != null" class="ui huge header">Update Package</div>
+
+  <div *ngIf="!isLoaded" style="margin-top: 50px;" class="ui active centered inline loader"></div>
+  <div *ngIf="isLoaded">
+
+    <form class="ui form" (ngSubmit)="onSubmit()" #packageForm="ngForm">
+      <div class="field" [ngClass]="(name.value == null || name.value == '') ? 'field error' : 'field'">
+        <label>Name</label>
+        <input type="text" name="name" id="name" placeholder="My Product Name" [(ngModel)]="packageName" class="form-control" required  #name="ngModel">
+      </div>
+      <div class="field" [ngClass]="(description.value == null || description.value == '') ? 'field error' : 'field'">
+        <label>Description</label>
+        <input type="text" name="description" placeholder="My Product Description" [(ngModel)]="packageDescription" class="form-control" required  #description="ngModel">
+
+      </div>
+
+      <div class="field">
+        <label [ngClass]="{'label-error': (select.value == null || select.value.length == 0)}">Products</label>
+        <ng-multiselect-dropdown
+          name="product-selection"
+          [placeholder]="'Select products'"
+          [data]="dropdownProducts"
+          [(ngModel)]="selectedProducts"
+          [settings]="dropdownSettings"
+          class="form-control" required  #select="ngModel">
+        </ng-multiselect-dropdown>
+
+        <div [hidden]="select.value != null && select.value.length > 0" style="color: #9f3a38; font-weight: 700">
+          One or more products are required
+        </div>
+      </div>
+
+      <button *ngIf="packageId == null" class="ui button primary" type="submit" (click)="doCreate()" [disabled]="!packageForm.form.valid">Create</button>
+      <button *ngIf="packageId != null" class="ui button primary" type="submit" (click)="doUpdate()" [disabled]="!packageForm.form.valid">Update</button>
+      <button class="ui button" type="button" [routerLink]="['/']">Cancel</button>
+    </form>
+  </div>
+
+</div>

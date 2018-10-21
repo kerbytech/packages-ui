@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('package-ui App', () => {
+describe('create-package-ui App', () => {
   let page: AppPage;
 
   beforeEach(() => {

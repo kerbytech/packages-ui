@@ -1,27 +1,32 @@
-# PackageUi
+# packages-ui
+Simple UI for interacting with the packages-api REST service
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+## Overview
+An Angular 7 'Proof of Concept' UI built with Semantic UI framework to interact with the packages-api REST service. The UI is fully responsive. 
 
-## Development server
+This uses: 
+  - Get Package
+  - Get Packages
+  - Create Package
+  - Update Package
+  - Delete Package
+  - Get Currencies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+As part of the startup a Node server is also launched to redirect requests for CORS compatibility. 
 
-## Code scaffolding
+## Deployment
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The UI requires NPM, Angular CLI, and Node installed.
 
-## Build
+A `username` and `password` is required for the Product API. It is best configured as part of the development environments/environment.ts file. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+### Run in NPM
+1. Add `productAPIUsername` and `productAPIPassword` in `src/environments/environment.ts`
+2. Build using `npm install`
+3. Launch using `npm run dev`
 
-## Running unit tests
+Once deployed the UI can be found at: **http://www.localhost:4200**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Tests
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Unfortunately there is no test coverage as this is a quick PoC of a front end UI.

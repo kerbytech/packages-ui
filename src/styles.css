@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --dark-blue: #2c3e50;
+  --dark-blue-highlight: #34495e;
+
+  --light-blue: #3498db;
+  --light-blue-highlight: #2980b9;
+
+  --dark-red: #e74c3c;
+  --dark-red-highlight: #c0392b;
+}

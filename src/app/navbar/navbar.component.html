@@ -1,0 +1,41 @@
+<div class="ui inverted vertical masthead center aligned segment">
+  <div class="ui container">
+    <div class="ui large secondary inverted pointing menu">
+      <a href="/" class=" active item">
+        API Example
+      </a>
+      <a href="/" class="item">
+        About
+      </a>
+      <div class="right item">
+            <h4 class="ui header inverted">
+              <div class="content">
+                Select currency: &nbsp;
+                <ng-template let-option #currencyTemplate>
+                  {{option.code}} - {{ option.name }}
+                </ng-template>
+                <sui-select class="selection"
+                            [(ngModel)]="currencyService.selectedCurrency"
+                            [options]="options"
+                            [optionTemplate]="currencyTemplate"
+                            [isSearchable]="false"
+                            #templated>
+                  <sui-select-option *ngFor="let currency of currencies" [value]="currency"></sui-select-option>
+                </sui-select>
+              </div>
+            </h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui text container" style="margin-top: 50px;">
+    <h1 class="ui inverted header">
+      Packages API Example
+    </h1>
+    <h3>A quick PoC example using the <a href="http://www.localhost:8080/swagger-ui.html">packages-api</a></h3>
+  </div>
+</div>
+
+
+<div style="height: 100px"></div>
+

@@ -1,0 +1,33 @@
+<div class="ui container">
+  <div class="ui huge header">Update Package</div>
+  <form class="ui form">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" name="name" placeholder="My Product Name" [(ngModel)]="packageName" >
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <input type="text" name="description" placeholder="My Product Description" [(ngModel)]="packageDescription">
+    </div>
+
+    <!--<select name="skills" multiple="" class="ui fluid dropdown">-->
+    <!--<option *ngFor="let product of availableProducts;" value="{{product.id}}">{{product.name}}</option>-->
+
+    <!--</select>-->
+    <div class="field">
+      <label>Products</label>
+      <ng-multiselect-dropdown
+        name="product-selection"
+        [placeholder]="'Select products'"
+        [data]="dropdownProducts"
+        [(ngModel)]="selectedProducts"
+        [settings]="dropdownSettings"
+        (onSelect)="onItemSelect($event)">
+      </ng-multiselect-dropdown>
+    </div>
+
+    <button class="ui button primary" type="submit" (click)="doCreate()">Create</button>
+    <button class="ui button" type="button" [routerLink]="['/']">Cancel</button>
+  </form>
+
+</div>

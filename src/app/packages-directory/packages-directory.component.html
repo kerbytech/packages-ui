@@ -1,0 +1,99 @@
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">Delete Package</div>
+  <div class="content">
+    <p>{{ context.data }}</p>
+  </div>
+  <div class="actions">
+    <button class="ui button" (click)="modal.deny('denied')">Cancel</button>
+    <button class="ui red button" (click)="modal.approve('approved')" autofocus>Delete</button>
+  </div>
+</ng-template>
+
+<div *ngIf="!isLoaded" style="margin-top: 50px;" class="ui active centered inline loader"></div>
+<div *ngIf="isLoaded">
+  <div *ngIf="packages.length == 0" class="ui container">
+    <div class="ui placeholder segment" style="text-align: center;">
+      <div class="ui icon header">
+        <i class="frown outline icon"></i>
+        No packages could be found. Why not add one?
+      </div>
+      <div class="inline">
+        <button class="ui primary button" (click)="goCreate()">
+          Add package
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui container">
+    <div class="ui cards">
+      <div class="ui link card" *ngFor="let aPackage of packages;">
+        <div class="content" (click)="goUpdate(aPackage.id)">
+          <a class="header">{{aPackage.name}}</a>
+
+          <div class="description">
+            {{aPackage.description}}
+          </div>
+        </div>
+        <div class="extra content" (click)="goUpdate(aPackage.id)">
+          <span class="left floated">
+            <i class="file icon"></i>
+             {{aPackage.products.length}} products
+          </span>
+          <span class="right floated">
+             <i class="money icon"></i>
+             {{aPackage.price | currency:currency.code:'symbol-narrow':'0.2'}}
+          </span>
+
+        </div>
+        <div class="ui bottom attached button" (click)="doDelete(aPackage.id, aPackage.name)">
+          <i class="delete icon"></i>
+          remove
+        </div>
+      </div>
+    </div>
+
+    <!--
+    <table class="ui celled table compact">
+      <thead>
+      <tr>
+        <th>Package Id</th>
+        <th >Name</th>
+        <th>Description</th>
+        <th>Number of Products</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let aPackage of packages; let i = index;">
+        <td data-label="Package Id">{{aPackage.id}}</td>
+        <td data-label="Name">{{aPackage.name}}</td>
+        <td data-label="Description">{{aPackage.description}}</td>
+        <td data-label="Number of Products">{{aPackage.products.length}}</td>
+        <td data-label="Price">{{aPackage.price}}</td>
+        <td class="collapsing" data-label="Actions">
+          <div class="ui vertical animated button" tabindex="0" (click)="goUpdate(aPackage.id)">
+            <div class="hidden content">Update</div>
+            <div class="visible content">
+              <i class="pencil icon"></i>
+            </div>
+          </div>
+          <div class="ui vertical animated button" tabindex="0" (click)="doDelete(aPackage.id, aPackage.name)">
+            <div class="hidden content">Delete</div>
+            <div class="visible content">
+              <i class="delete icon"></i>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    -->
+    <div *ngIf="packages.length > 0" style="margin-top: 20px" >
+      <button class="ui primary button" (click)="goCreate()">
+        Add package
+      </button>
+    </div>
+  </div>
+</div>

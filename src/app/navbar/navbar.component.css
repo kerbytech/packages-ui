@@ -1,0 +1,7 @@
+.ui.inverted.segment {
+  background: var(--dark-blue);
+}
+
+.ui.secondary.inverted.pointing.menu {
+  border-style: none;
+}
