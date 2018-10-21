@@ -14,6 +14,15 @@ This uses:
 
 As part of the startup a Node server is also launched to redirect requests for CORS compatibility. 
 
+### Create Example
+![Alt Text](https://user-images.githubusercontent.com/567384/47269753-35221880-d55a-11e8-87b3-fe895455c65c.gif)
+
+### Currency Example
+![Alt Text](https://user-images.githubusercontent.com/567384/47269751-34898200-d55a-11e8-98bc-5a648cf74fbf.gif)
+
+### Update Example
+![Alt Text](https://user-images.githubusercontent.com/567384/47269752-35221880-d55a-11e8-93af-2927ebf80ea2.gif)
+
 ## Deployment
 
 The UI requires NPM, Angular CLI, and Node installed.
