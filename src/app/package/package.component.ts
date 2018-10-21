@@ -44,6 +44,7 @@ export class PackageComponent implements OnInit {
     });
 
     this.availableProducts = [];
+    this.dropdownProducts = [];
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -56,50 +57,58 @@ export class PackageComponent implements OnInit {
   get name() { return this.packageForm.get('name'); }
 
   ngOnInit() {
+    this.isLoaded = false;
     // init available products and for dropdown
     this.productService.getProducts(false).subscribe(value => {
+      this.isLoaded = false;
       try {
-        // TODO have no idea if this works as the Package API is down so can't check structure or if parsing results will work
         this.availableProducts = value;
+        const _dropdownProducts = [];
         for (const product of value) {
-          this.dropdownProducts.push({
+          _dropdownProducts.push({
             id: product.id,
             text: product.name
           });
         }
+        this.dropdownProducts = [..._dropdownProducts];
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id != null) {
+          // update
+          this.packageId = +id;
+          this.packageService.readPackageUsingGET({id: this.packageId, currency: this.currency.code}).subscribe(value => {
+            this.packageName = value.package.name;
+            this.packageDescription = value.package.description;
+            const selProducts = [];
+            for (const product of value.package.products) {
+              selProducts.push(
+                {id: product.id, text: product.name}
+              );
+            }
+            this.selectedProducts = [... selProducts];
+            this.isLoaded = true;
+          }, error2 => {
+            // TODO toast error
+            console.error('Something went wrong getting info about package', error2);
+          });
+        } else {
+          // create
+          this.selectedProducts = [];
+          this.isLoaded = true;
+        }
       } catch (e) {
         // TODO toast error
         console.error('Unable to parse Package API response', e);
+        // TODO alert just because it's important if this fails to alert user - replace with toast
+        alert('Unable to parse packages from API.');
       }
     }, error2 => {
       // TODO toast error
       console.error('Package API is down! Can\'t perform lookup for Products', error2);
+      // TODO alert just because it's important if this fails to alert user - replace with toast
+      alert('Unable to get packages from API. Please try again later');
     });
 
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id != null) {
-      // update
-      this.packageId = +id;
-      this.packageService.readPackageUsingGET({id: this.packageId, currency: this.currency.code}).subscribe(value => {
-        this.packageName = value.package.name;
-        this.packageDescription = value.package.description;
-        const selProducts = [];
-        for (const product of value.package.products) {
-          selProducts.push(
-            {id: product.id, text: product.name}
-          );
-        }
-        this.selectedProducts = [... selProducts];
-        this.isLoaded = true;
-      }, error2 => {
-        // TODO toast error
-        console.error('Something went wrong getting info about package', error2);
-      });
-    } else {
-      // create
-      this.selectedProducts = [];
-      this.isLoaded = true;
-    }
+
 
 
   }

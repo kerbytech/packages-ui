@@ -20,7 +20,7 @@ export class ProductService {
         .set('Content-Type', 'application/json')
         .set('authorization', 'Basic ' + btoa(environment.productAPIUsername + ':' + environment.productAPIPassword));
 
-      this.http.get(environment.productAPI + '/availableProducts', {headers: headers}).subscribe(value => {
+      this.http.get(environment.productAPI + '/products', {headers: headers}).subscribe(value => {
         const productDtos = new Array();
         for (const obj of <any>value) {
           if (obj !== undefined) {

@@ -1,5 +1,4 @@
 <div class="ui container">
-
   <div *ngIf="packageId == null" class="ui huge header">Create Package</div>
   <div *ngIf="packageId != null" class="ui huge header">Update Package</div>
 
@@ -7,14 +6,15 @@
   <div *ngIf="isLoaded">
 
     <form class="ui form" (ngSubmit)="onSubmit()" #packageForm="ngForm">
+      <!-- TODO display actual error caused. E.g. field too long -->
       <div class="field" [ngClass]="(name.value == null || name.value == '') ? 'field error' : 'field'">
         <label>Name</label>
-        <input type="text" name="name" id="name" placeholder="My Product Name" [(ngModel)]="packageName" class="form-control" required  #name="ngModel">
+        <input type="text" name="name" id="name" placeholder="My Product Name" [(ngModel)]="packageName" class="form-control" required #name="ngModel" maxlength="254">
       </div>
+      <!-- TODO display actual error caused. E.g. field too long -->
       <div class="field" [ngClass]="(description.value == null || description.value == '') ? 'field error' : 'field'">
         <label>Description</label>
-        <input type="text" name="description" placeholder="My Product Description" [(ngModel)]="packageDescription" class="form-control" required  #description="ngModel">
-
+        <input type="text" name="description" placeholder="My Product Description" [(ngModel)]="packageDescription" class="form-control" required #description="ngModel" maxlength="254">
       </div>
 
       <div class="field">

@@ -26,8 +26,9 @@
   </div>
 
   <div class="ui container">
+
     <div class="ui cards">
-      <div class="ui link card" *ngFor="let aPackage of packages;">
+      <div class="ui link card orange" *ngFor="let aPackage of packages;">
         <div class="content" (click)="goUpdate(aPackage.id)">
           <a class="header">{{aPackage.name}}</a>
 
@@ -36,14 +37,14 @@
           </div>
         </div>
         <div class="extra content" (click)="goUpdate(aPackage.id)">
-          <span class="left floated">
-            <i class="file icon"></i>
-             {{aPackage.products.length}} products
-          </span>
+        <span class="left floated">
+          <i class="file icon"></i>
+           {{aPackage.products.length}} products
+        </span>
           <span class="right floated">
-             <i class="money icon"></i>
-             {{aPackage.price | currency:currency.code:'symbol-narrow':'0.2'}}
-          </span>
+           <i class="money icon"></i>
+           {{aPackage.price | currency:currency.code:'symbol-narrow':'0.2'}}
+        </span>
 
         </div>
         <div class="ui bottom attached button" (click)="doDelete(aPackage.id, aPackage.name)">
@@ -53,47 +54,11 @@
       </div>
     </div>
 
-    <!--
-    <table class="ui celled table compact">
-      <thead>
-      <tr>
-        <th>Package Id</th>
-        <th >Name</th>
-        <th>Description</th>
-        <th>Number of Products</th>
-        <th>Price</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let aPackage of packages; let i = index;">
-        <td data-label="Package Id">{{aPackage.id}}</td>
-        <td data-label="Name">{{aPackage.name}}</td>
-        <td data-label="Description">{{aPackage.description}}</td>
-        <td data-label="Number of Products">{{aPackage.products.length}}</td>
-        <td data-label="Price">{{aPackage.price}}</td>
-        <td class="collapsing" data-label="Actions">
-          <div class="ui vertical animated button" tabindex="0" (click)="goUpdate(aPackage.id)">
-            <div class="hidden content">Update</div>
-            <div class="visible content">
-              <i class="pencil icon"></i>
-            </div>
-          </div>
-          <div class="ui vertical animated button" tabindex="0" (click)="doDelete(aPackage.id, aPackage.name)">
-            <div class="hidden content">Delete</div>
-            <div class="visible content">
-              <i class="delete icon"></i>
-            </div>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    -->
-    <div *ngIf="packages.length > 0" style="margin-top: 20px" >
+    <div class="right" *ngIf="packages.length > 0" style="margin-top: 60px">
       <button class="ui primary button" (click)="goCreate()">
         Add package
       </button>
     </div>
+
   </div>
 </div>
